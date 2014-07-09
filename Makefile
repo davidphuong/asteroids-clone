@@ -1,8 +1,17 @@
-asteroids: asteroids.o
-	g++ asteroids.o -o asteroids -lsfml-graphics -lsfml-window
-
+asteroids: asteroids.o VisibleGameObject.o GameObjectManager.o SpaceShip.o
+	    g++ asteroids.o VisibleGameObject.o GameObjectManager.o SpaceShip.o -o asteroids -lsfml-graphics -lsfml-window
+		        
 asteroids.o: asteroids.cpp
-	g++ -c asteroids.cpp
+	    g++ -c asteroids.cpp
+		        
+VisibleGameObject.o: VisibleGameObject.h VisibleGameObject.cpp
+	    g++ -c VisibleGameObject.cpp
+		    
+GameObjectManager.o: GameObjectManager.h GameObjectManager.cpp
+	    g++ -c GameObjectManager.cpp
+
+SpaceShip.o: SpaceShip.cpp
+	    g++ -c SpaceShip.cpp
 
 clean:
-	rm -f *.o asteroids
+	    rm -f *.o asteroids
