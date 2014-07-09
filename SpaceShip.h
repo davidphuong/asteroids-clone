@@ -8,6 +8,9 @@ class SpaceShip : public VisibleGameObject {
         SpaceShip();
 
         virtual void update();
+
+    private:
+        double m_velocity_limit;
 };
 
 #endif
