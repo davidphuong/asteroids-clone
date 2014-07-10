@@ -11,6 +11,9 @@ class SpaceShip : public VisibleGameObject {
 
     private:
         double m_velocity_limit;
+
+        float compute_x_component(float angle);
+        float compute_y_component(float angle);
 };
 
 #endif
