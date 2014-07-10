@@ -11,7 +11,7 @@ class VisibleGameObject {
         void load(std::string filename);
 
         virtual void update() = 0;
-        void draw(sf::RenderWindow& window);
+        virtual void draw(sf::RenderWindow& window);
 
         void set_position(float x, float y);
 
