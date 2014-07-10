@@ -37,14 +37,10 @@ void SpaceShip::update() {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        m_bullets.push_back(new sf::RectangleShape);
-        // m_bullets[m_bullets.size() - 1]->setSize(sf::Vector2f(20, 0));
-        m_bullets[m_bullets.size() - 1]->setSize(sf::Vector2f(10, 1));
-        m_bullets[m_bullets.size() - 1]->setRotation(m_sprite.getRotation() + 180);
-        m_bullets[m_bullets.size() - 1]->setFillColor(sf::Color::Red);
-        m_bullets[m_bullets.size() - 1]->setOutlineColor(sf::Color::Red);
-        m_bullets[m_bullets.size() - 1]->setOutlineThickness(2);
-        m_bullets[m_bullets.size() - 1]->setPosition(50, 50);
+        if (m_clock.getElapsedTime().asSeconds() > 1) {
+            m_bullets.push_back(new Bullet(m_sprite.getRotation(), get_position()));
+            m_clock.restart();
+        }
     }
 
 
@@ -61,14 +57,17 @@ void SpaceShip::update() {
     }
 
     m_sprite.move(m_velocity.x, m_velocity.y);
+
+    for (unsigned int i = 0; i < m_bullets.size(); i++) {
+        m_bullets[i]->update();
+    }
 }
 
 void SpaceShip::draw(sf::RenderWindow& window) {
     window.draw(m_sprite);
 
     for (unsigned int i = 0; i < m_bullets.size(); i++) {
-        m_bullets[i]->move(4, 0);
-        window.draw(*m_bullets[i]);
+        m_bullets[i]->draw(window);
     }
 }
 

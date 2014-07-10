@@ -2,8 +2,8 @@
 #define SPACESHIP_H
 
 #include "VisibleGameObject.h"
+#include "Bullet.h"
 
-#include <SFML/Graphics.hpp>
 #include <vector>
 
 class SpaceShip : public VisibleGameObject {
@@ -20,7 +20,9 @@ class SpaceShip : public VisibleGameObject {
         float compute_x_component(float angle);
         float compute_y_component(float angle);
 
-        std::vector<sf::RectangleShape*> m_bullets;
+        std::vector<Bullet*> m_bullets;
+
+        sf::Clock m_clock;
 };
 
 #endif
